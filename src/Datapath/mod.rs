@@ -1,5 +1,4 @@
 
-
 pub struct NesPPU {
     pub status: StatusRegister,
     pub scroll: ScrollRegister,
