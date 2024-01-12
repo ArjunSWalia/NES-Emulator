@@ -34,7 +34,7 @@ impl Mem for Bus {
             PPU_REGISTERS ..= PPU_REGISTERS_MIRRORS_END => {
                 let _mirror_down_addr = addr & 0b00100000_00000111;
             }
-            _ => {
+            => {
                 println!("MEM-WRITE ACCESS ERROR {}", addr);
             }
         }
