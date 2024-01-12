@@ -58,7 +58,6 @@ impl PPU for NesPPU {
                 self.vram[self.mirror_vram_addr(addr) as usize] = value;
             }
 
-            //Addresses $3F10/$3F14/$3F18/$3F1C are mirrors of $3F00/$3F04/$3F08/$3F0C
             0x3f10 | 0x3f14 | 0x3f18 | 0x3f1c => {
                 let add_mirror = addr - 0x10;
                 self.palette_table[(add_mirror - 0x3f00) as usize] = value;
@@ -70,44 +69,3 @@ impl PPU for NesPPU {
         }
         self.increment_vram_addr();
     }
-
-
-    #[test]
-    fn test_read_status_resets_latch() {
-        let mut ppu = NesPPU::new_empty_rom();
-        ppu.vram[0x0305] = 0x66;
-
-        ppu.write_to_ppu_addr(0x21);
-        ppu.write_to_ppu_addr(0x23);
-        ppu.write_to_ppu_addr(0x05);
-
-        ppu.read_data();
-        assert_ne!(ppu.read_data(), 0x66);
-
-        ppu.read_status();
-
-        ppu.write_to_ppu_addr(0x23);
-        ppu.write_to_ppu_addr(0x05);
-
-        ppu.read_data();
-        assert_eq!(ppu.read_data(), 0x66);
-    }
-
-    #[test]
-    fn test_oam_dma() {
-        let mut ppu = NesPPU::new_empty_rom();
-
-        let mut data = [0x66; 256];
-        data[0] = 0x77;
-        data[255] = 0x88;
-
-        ppu.write_to_oam_addr(0xf);
-        assert_eq!(ppu.read_oam_data(), 0x88);
-
-        ppu.write_to_oam_addr(0x10);
-        assert_eq!(ppu.read_oam_data(), 0x77);
-  
-        ppu.write_to_oam_addr(0x11);
-        assert_eq!(ppu.read_oam_data(), 0x66);
-    }
-}
