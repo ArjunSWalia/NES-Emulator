@@ -101,6 +101,6 @@ impl Cartridge {
 
 
 fn main()-> io::Result<()> {
-    let cartridge = Cartridge::load("...nes")?;
+    let cartridge = Cartridge::load("./NESROMS/final_fantasy.nes")?;
     Ok(())
 }
