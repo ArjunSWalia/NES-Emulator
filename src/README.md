@@ -1,5 +1,5 @@
 # NES-Emulator
-A WIP Nintendo Entertainment System Emulator
+A Fully functional NES Emulator built with Rust!
 
 
 
