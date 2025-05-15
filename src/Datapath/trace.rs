@@ -2,7 +2,7 @@ use crate::cpu::AddressingMode;
 use crate::cpu::Mem;
 use crate::cpu::CPU;
 use crate::opcodes;
-use crate::Bus;
+use crate::Busgit remote -v;
 
 
 pub fn trace(cpu: CPU) -> String {
