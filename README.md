@@ -1,4 +1,3 @@
-# NES-Emulator
+## NES-Emulator
+
 A fully functional NES Emulator
-
-
