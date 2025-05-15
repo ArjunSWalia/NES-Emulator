@@ -2,6 +2,7 @@ use crate::cpu::AddressingMode;
 use crate::cpu::Mem;
 use crate::cpu::CPU;
 use crate::opcodes;
+use crate::Bus;
 
 
 pub fn trace(cpu: CPU) -> String {
